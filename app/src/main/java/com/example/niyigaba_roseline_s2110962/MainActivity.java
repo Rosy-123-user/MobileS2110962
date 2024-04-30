@@ -3,7 +3,6 @@ package com.example.niyigaba_roseline_s2110962;
 import static android.content.ContentValues.TAG;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -15,7 +14,6 @@ import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.util.Xml;
 import android.view.Gravity;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -190,7 +188,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void onCityButtonClick(String city) {
         String rssFeedUrl = model.getRSSFeedUrl(city);
+        String mainWeatherUrl = model.getMainWeatherRSSFeedUrl(city);
+
+        new FetchMainWeatherTask(city).execute(mainWeatherUrl);
         new FetchRSSFeedTask(city).execute(rssFeedUrl);
+
     }
 
         @SuppressLint("StaticFieldLeak")
@@ -268,6 +270,151 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+
+        // the main weather info fetching
+
+    private class FetchMainWeatherTask extends AsyncTask<String, Void, WeatherData> implements com.example.niyigaba_roseline_s2110962.FetchMainWeatherTask {
+
+        private String city;
+
+        public FetchMainWeatherTask(String city) {
+            this.city = city;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // Show progress bar or perform any pre-execution tasks
+        }
+
+        @Override
+        protected WeatherData doInBackground(String... urls) {
+            try {
+                String rssFeedData = fetchRSSFeed(urls[0]);
+                return parseMainWeatherInfo(rssFeedData);
+            } catch (Exception e) {
+                Log.e("FetchMainWeatherTask", "Error in doInBackground: " + e.getMessage());
+                return null;
+            }
+
+        }
+
+        private String fetchRSSFeed(String urlString) {
+            String rssFeedData = null;
+            try {
+                URL url = new URL(urlString);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                InputStream in = new BufferedInputStream(conn.getInputStream());
+                rssFeedData = readStream(in);
+            } catch (IOException e) {
+                Log.e("FetchRSSFeedTask", "Error fetching RSS feed: " + e.getMessage());
+            }
+            return rssFeedData;
+        }
+
+        private String readStream(InputStream is) {
+            StringBuilder sb = new StringBuilder();
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line).append('\n');
+                }
+            } catch (IOException e) {
+                Log.e("FetchRSSFeedTask", "Error reading stream: " + e.getMessage());
+            }
+            return sb.toString();
+        }
+
+        private WeatherData parseMainWeatherInfo(String rssFeedData) {
+            WeatherData weatherData = null;
+
+            try {
+                XmlPullParser parser = Xml.newPullParser();
+                parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+                parser.setInput(new StringReader(rssFeedData));
+
+                // Variables to store weather information
+                String city = null;
+                String date = null;
+                String condition = null;
+                String icon = null;
+
+                // Loop through the XML data to find the main weather information
+                int eventType = parser.getEventType();
+                while (eventType != XmlPullParser.END_DOCUMENT) {
+                    String tagName = parser.getName();
+                    switch (eventType) {
+                        case XmlPullParser.START_TAG:
+                            // Check if the tag is <title> or <description>
+                            if ("title".equals(tagName)) {
+                                String title = parser.nextText();
+                                // Extract city and date from the title
+                                if (title != null && title.contains(",")) {
+                                    String[] parts = title.split(",");
+                                    if (parts.length >= 2) {
+                                        city = parts[0].trim();
+                                        date = parts[1].trim();
+                                    }
+                                }
+                            } else if ("description".equals(tagName)) {
+                                // Extract condition and icon from the description
+                                String description = parser.nextText();
+                                if (description != null) {
+                                    // Logic to extract condition and icon based on description format
+                                    // Example: "Temperature: 25°C, Condition: Sunny, Icon: sunny"
+                                    String[] parts = description.split(", ");
+                                    for (String part : parts) {
+                                        if (part.startsWith("Condition:")) {
+                                            condition = part.substring("Condition:".length()).trim();
+                                        } else if (part.startsWith("Icon:")) {
+                                            icon = part.substring("Icon:".length()).trim();
+                                        }
+                                    }
+                                }
+                            }
+                            break;
+                    }
+                    eventType = parser.next();
+                }
+
+                // Set the extracted weather data to the WeatherData object
+                weatherData.setCityName(city);
+                weatherData.setDate(date);
+                weatherData.setMainCondition(condition);
+                weatherData.setMainIcon(icon);
+
+            } catch (XmlPullParserException | IOException e) {
+                Log.e("ParseMainWeatherInfo", "Error parsing RSS feed: " + e.getMessage());
+            }
+            return weatherData;
+        }
+
+
+
+        @Override
+        public void onPostExecute(WeatherData weatherData) {
+
+            super.onPostExecute(weatherData);
+
+            // Update UI with main weather information
+            if (weatherData != null) {
+
+                // Create a local variable to store weather data
+                WeatherData localWeatherData = weatherData;
+                // Update UI elements with the main weather information
+                TextView cityTextView = findViewById(R.id.city_text);
+                TextView mainWeatherTextView = findViewById(R.id.main_weather_info);
+                // Set city name and main weather info
+                cityTextView.setText(weatherData.getCityName());
+                mainWeatherTextView.setText(weatherData.getMainCondition());
+            } else {
+                // Handle case where main weather information is null
+                // Show error message, retry, etc.
+            }
+        }
+    }
+// end of main weather info fetching
     private void updateWeatherUI(WeatherData weatherData) {
 
         if (weatherData == null) {
@@ -308,7 +455,7 @@ public class MainActivity extends AppCompatActivity {
                     dayMaxTempTextViews[i].setText(dayMaxTemps[i]);
                 }
                 if (dayIconImageViews[i] != null) {
-                    dayIconImageViews[i].setImageResource(Integer.parseInt(dayIcons[i]));
+                    dayIconImageViews[i].setImageResource(Integer.parseInt(String.valueOf(dayIcons[i])));
                 }
                 if (dayConditionTextViews[i] != null) {
                     dayConditionTextViews[i].setText(dayConditions[i]);
@@ -343,6 +490,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void setWeatherIcon(String icon, ImageView imageView) {
+
+        if (imageView == null) {
+            Log.e(TAG, "ImageView is null. Cannot set weather icon.");
+            return;
+        }
         if (weatherIcons != null && weatherIcons.containsKey(icon)) {
             int drawableId = weatherIcons.get(icon);
             Drawable drawable = AppCompatResources.getDrawable(MainActivity.this, drawableId);

@@ -39,6 +39,33 @@ public class Model {
         return rssFeedUrl;
     }
 
+    // New method to get the RSS feed URL for main weather information
+    public String getMainWeatherRSSFeedUrl(String city) {
+        String mainWeatherUrl;
+        switch (city) {
+            case "London":
+                mainWeatherUrl = "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/2643743";
+                break;
+            case "Glasgow":
+                mainWeatherUrl = "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/2648579";
+                break;
+            case "Oman":
+                mainWeatherUrl = "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/287286";
+                break;
+            case "Mauritius":
+                mainWeatherUrl = "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/934154";
+                break;
+            case "Bangladesh":
+                mainWeatherUrl = "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/1185241";
+                break;
+            default:
+                mainWeatherUrl = "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/5128581";
+                break;
+        }
+        return mainWeatherUrl;
+    }
+
+
     String extractHumidity(String description) {
         if (description != null) {
             int startIndex = description.indexOf("Humidity: ");
@@ -310,6 +337,8 @@ public class Model {
     public WeatherData parseWeatherData(XmlPullParser parser) {
         try {
             String cityName = "";
+            String date="";
+            String mainCondition="";
             String mainTemp = "";
             String mainIcon = "";
             String humidity = "";
@@ -361,7 +390,7 @@ public class Model {
             }
 
             // Create and return a new WeatherData object
-            WeatherData weatherData = new WeatherData(cityName, mainTemp, mainIcon,
+            WeatherData weatherData = new WeatherData(cityName, date, mainCondition, mainTemp, mainIcon,
                     dayNames, dayMinTemps, dayMaxTemps, dayIcons,
                     humidity, pressure, windDirection, windSpeed, visibility,
                     uvRisk, pollution, sunrise, sunset);

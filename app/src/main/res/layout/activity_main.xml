@@ -150,6 +150,15 @@
             android:text=""
             android:textColor="@android:color/white"
             android:textSize="15sp" />
+        <!-- Main Weather Info -->
+        <TextView
+            android:id="@+id/main_weather_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="16sp"
+            android:textColor="@android:color/black"/>
+
         <!-- Date, Min Temp, Max Temp -->
         <TextView
             android:id="@+id/date_text"

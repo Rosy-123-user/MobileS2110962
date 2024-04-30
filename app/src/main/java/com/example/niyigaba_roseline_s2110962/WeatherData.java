@@ -1,6 +1,8 @@
 package com.example.niyigaba_roseline_s2110962;
 
 public class WeatherData {
+    private String date;
+    private String mainCondition;
     private String cityName;
     private String mainTemp;
     private String mainIcon;
@@ -19,8 +21,13 @@ public class WeatherData {
     private String[] dayIcons;
     private String[] dayConditions;
 
-    public WeatherData(String cityName, String mainTemp, String mainIcon, String[] dayNames, String[] dayMinTemps, String[] dayMaxTemps, String[] dayIcons, String humidity, String pressure, String windDirection, String windSpeed, String visibility, String uvRisk, String pollution, String sunrise, String sunset) {
+    public WeatherData(String cityName, String date, String mainCondition, String mainTemp, String mainIcon,
+                       String[] dayNames, String[] dayMinTemps, String[] dayMaxTemps, String[] dayIcons,
+                       String humidity, String pressure, String windDirection, String windSpeed,
+                       String visibility, String uvRisk, String pollution, String sunrise, String sunset) {
         this.cityName = cityName;
+        this.date = date;
+        this.mainCondition = mainCondition;
         this.mainTemp = mainTemp;
         this.mainIcon = mainIcon;
         this.dayNames = dayNames;
@@ -38,6 +45,7 @@ public class WeatherData {
         this.sunrise = sunrise;
         this.sunset = sunset;
     }
+
 
     // Getters and setters for all properties
 
@@ -176,4 +184,83 @@ public class WeatherData {
     public void setDayConditions(String[] dayConditions) {
         this.dayConditions = dayConditions;
     }
+
+
+    private String mainWeatherInfo;
+    // Getter and setter for mainWeatherInfo
+    public String getMainWeatherInfo() {
+        return mainWeatherInfo;
+    }
+
+    public void setMainWeatherInfo(String mainWeatherInfo) {
+        this.mainWeatherInfo = mainWeatherInfo;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setMainCondition(String mainCondition) {
+        this.mainCondition = mainCondition;
+    }
+
+    public int getMainCondition() {
+        int conditionInt = 0;
+        // Convert the main condition String to an int based on the provided icons
+        switch (mainCondition) {
+            case "Snow":
+                conditionInt = R.drawable.snow;
+                break;
+            case "Tornado":
+                conditionInt = R.drawable.tornado;
+                break;
+            case "Thunder":
+                conditionInt = R.drawable.thunder;
+                break;
+            case "Rain_Thunder":
+                conditionInt = R.drawable.rain_thunder;
+                break;
+            case "Rain":
+                conditionInt = R.drawable.rain;
+                break;
+            case "Overcast":
+                conditionInt = R.drawable.overcast;
+                break;
+            case "Night_Snow_Thunder":
+                conditionInt = R.drawable.night_snow_thunder;
+                break;
+            case "Night_Rain":
+                conditionInt = R.drawable.night_rain;
+                break;
+            case "Night_Clear":
+                conditionInt = R.drawable.night_clear;
+                break;
+            case "Night_Partial_Cloud":
+                conditionInt = R.drawable.night_partial_cloud;
+                break;
+            case "Mist":
+                conditionInt = R.drawable.mist;
+                break;
+            case "Sleet":
+                conditionInt = R.drawable.sleet;
+                break;
+            case "Night_Sleet":
+                conditionInt = R.drawable.night_sleet;
+                break;
+            case "sunny":
+            case "clear sky":
+                conditionInt = R.drawable.sunny;
+                break;
+            default:
+                // Handle unknown condition or set a default icon
+                conditionInt = R.drawable.default_icon; // Placeholder value, replace with your default icon
+                break;
+        }
+        return conditionInt;
+    }
+
 }
