@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        tools:ignore="MissingConstraints">
+
+    <TextView
+        android:id="@+id/next_3_days"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Three day forecast"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp" />
+
+    <!-- Placeholder for Next Three Days Forecast -->
+    <!-- Placeholder for Next Three Days Forecast -->
+    <HorizontalScrollView
+        android:id="@+id/horizontal_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/next_3_days"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/forecast_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <!-- Day 1 Forecast Box -->
+            <LinearLayout
+                android:layout_width="162dp"
+                android:layout_height="155dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/gradient_background"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/day1_name"
+                    android:layout_width="90dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+                <!-- Weather Icon -->
+                <ImageView
+                    android:id="@+id/day1_icon"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/day1_icon"
+                    android:src="@drawable/default_icon1"/>
+
+                <!-- Temperature Range -->
+                <TextView
+                    android:id="@+id/day1_min_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:textColor="@android:color/white" />
+                <TextView
+                    android:id="@+id/day1_max_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:textColor="@android:color/white" />
+
+                <!-- Weather Condition -->
+                <TextView
+                    android:id="@+id/day1_condition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+            <!-- Day 2 Forecast Box (Similar to Day 1) -->
+            <LinearLayout
+                android:layout_width="175dp"
+                android:layout_height="154dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/gradient_background"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/day2_name"
+                    android:layout_width="90dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+                <!-- Weather Icon -->
+                <ImageView
+                    android:id="@+id/day2_icon"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/day2_icon"
+                    android:src="@drawable/default_icon1" />
+
+                <!-- Temperature Range -->
+                <TextView
+                    android:id="@+id/day2_min_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:textColor="@android:color/white" />
+                <TextView
+                    android:id="@+id/day2_max_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:textColor="@android:color/white" />
+
+                <!-- Weather Condition -->
+                <TextView
+                    android:id="@+id/day2_condition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+            <!-- Day 3 Forecast Box (Similar to Day 1 and Day 2) -->
+            <LinearLayout
+                android:layout_width="178dp"
+                android:layout_height="155dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/gradient_background"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/day3_name"
+                    android:layout_width="90dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+                <!-- Weather Icon -->
+                <ImageView
+                    android:id="@+id/day3_icon"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/day3_icon"
+                    android:src="@drawable/default_icon1" />
+
+                <!-- Temperature Range -->
+                <TextView
+                    android:id="@+id/day3_min_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:textColor="@android:color/white" />
+                <TextView
+                    android:id="@+id/day3_max_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:textColor="@android:color/white" />
+
+                <!-- Weather Condition -->
+                <TextView
+                    android:id="@+id/day3_condition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

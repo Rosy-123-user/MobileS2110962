@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="city_text" type="id" />
+    <item name="temperature_text" type="id" />
+    <item name="temperature_text1" type="id" />
+    <item name="max_temp_text" type="id" />
+    <item name="min_temp_text" type="id" />
+    <item name="date_text" type="id" />
+</resources>

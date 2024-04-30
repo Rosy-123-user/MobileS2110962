@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="light_blue_50">#FFE1F5FE</color>
+    <color name="light_blue_200">#FF81D4FA</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
+    <color name="menu_lines">#FF000000</color> <!-- Add menu_lines color -->
+    <color name="theme_color">#FF81D4FA</color> <!-- Add theme_color -->
+    <color name="light_theme">#FFE1F5FE</color> <!-- Add light_theme -->
+    <color name="dark_theme">#FF000000</color> <!-- Add dark_theme -->
+    <color name="fahrenheit">#FF000000</color> <!-- Add fahrenheit -->
+    <color name="celsius">#FF000000</color> <!-- Add celsius -->
+    <color name="temperature_unit">#FF000000</color> <!-- Add temperature_unit -->
+    <color name="settings">#FF000000</color> <!-- Add settings -->
+</resources>

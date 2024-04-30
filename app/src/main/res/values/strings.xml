@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SKY FROST</string>
+    <string name="menu_icon">help</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
+    <string name="dark_theme">dark_theme</string>
+    <string name="light_theme">light_theme</string>
+    <string name="theme_color">theme_color</string>
+    <string name="fahrenheit">fahrenheit</string>
+    <string name="celsius">celsius</string>
+    <string name="temperature_unit">temperature unit</string>
+    <string name="settings">settings</string>
+    <string name="weather_details">Weather Details</string>
+    <string name="temperature">Temperature</string> <!-- Add temperature string -->
+    <string name="pressure">Pressure</string> <!-- Add pressure string -->
+    <string name="humidity">Humidity</string> <!-- Add humidity string -->
+    <string name="weather_icon">Weather Icon</string> <!-- Add weather_icon string -->
+    <string name="three_day_forecast">Three day forecast</string>
+    <string name="day1">Day 1</string>
+    <string name="day2">Day 2</string>
+    <string name="day3">Day 3</string>
+    <string name="day1_icon">Day 1 Icon</string> <!-- Add day1_icon string -->
+    <string name="day2_icon">Day 2 Icon</string> <!-- Add day2_icon string -->
+    <string name="day3_icon">Day 3 Icon</string> <!-- Add day3_icon string -->
+    <string name="visibility">Visibility</string> <!-- Add visibility string -->
+    <string name="uv_risk">UV Risk</string> <!-- Add uv_risk string -->
+    <string name="pollution">Pollution</string> <!-- Add pollution string -->
+    <string name="sunrise">Sunrise</string> <!-- Add sunrise string -->
+    <string name="sunset">Sunset</string> <!-- Add sunset string -->
+    <string name="profile">profile</string>
+    <string name="favourites">favourites</string>
+    <string name="log_out">log out</string>
+    <string name="help">help</string>
+    <string name="wind_direction">wind direction</string>
+    <string name="wind_speed">wind speed</string>
+    <string name="Three_day_forecast">Three day forecast</string>
+    <string name="Weather_Details">Weather Details</string>
+    <string name="london">london</string>
+    <string name="oman">oman</string>
+    <string name="mauritius">mauritius</string>
+    <string name="new_york">new_york</string>
+    <string name="glasgow">glasgow</string>
+    <string name="bangladesh">bangladesh</string>
+</resources>
