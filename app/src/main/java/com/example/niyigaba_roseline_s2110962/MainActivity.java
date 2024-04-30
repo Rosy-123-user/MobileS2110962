@@ -1,8 +1,10 @@
 package com.example.niyigaba_roseline_s2110962;
-
+//Names:Niyigaba_Roseline
+//StudentId:S2110962
 import static android.content.ContentValues.TAG;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -14,6 +16,7 @@ import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.util.Xml;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,8 +25,10 @@ import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -148,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Initialize bottom navigation
+////         Initialize bottom navigation
 //        bottomNavigation = findViewById(R.id.bottom_navigation);
 //        // Define the method to handle navigation item selection
 //        bottomNavigation.setOnNavigationItemSelectedListener((BottomNavigationView.OnNavigationItemSelectedListener) () -> {
@@ -172,8 +177,49 @@ public class MainActivity extends AppCompatActivity {
 //                 default:
 //                     return false;
 //             }});
+
+        // Initialize BottomNavigationView
+//        BottomNavigationView bottomNavigationView;
+//        bottomNavigationView = findViewById(R.id.bottom_navigation);
+//        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+//
+//        // Load default fragment
+//        getSupportFragmentManager().beginTransaction()
+//                .replace(R.id.fragment_container, new HomeFragment())
+//                .commit();
         // end of on create
     }
+
+//    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+//            new BottomNavigationView.OnNavigationItemSelectedListener() {
+//                @Override
+//                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                    Fragment selectedFragment = null;
+//
+//                    switch (item.getItemId()) {
+//                        case MenuIds.MENU_HOME:
+//                            selectedFragment = new HomeFragment();
+//                            break;
+//                        case MenuIds.MENU_CITIES:
+//                            selectedFragment = new CitiesFragment();
+//                            break;
+//                        case MenuIds.MENU_SETTINGS:
+//                            selectedFragment = new SettingsFragment();
+//                            break;
+//                    }
+//
+//                    if (selectedFragment != null) {
+//                        getSupportFragmentManager().beginTransaction()
+//                                .replace(R.id.fragment_container, selectedFragment)
+//                                .commit();
+//                        return true;
+//                    }
+//
+//                    return false;
+//                }
+//            };
+
+
 
     private void initializeViews() {
         cityTextView = findViewById(R.id.city_text);
@@ -188,9 +234,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void onCityButtonClick(String city) {
         String rssFeedUrl = model.getRSSFeedUrl(city);
-        String mainWeatherUrl = model.getMainWeatherRSSFeedUrl(city);
+//       String mainWeatherUrl = model.getMainWeatherRSSFeedUrl(city);
 
-        new FetchMainWeatherTask(city).execute(mainWeatherUrl);
+//        new FetchMainWeatherTask(city).execute(mainWeatherUrl);
         new FetchRSSFeedTask(city).execute(rssFeedUrl);
 
     }
@@ -273,147 +319,147 @@ public class MainActivity extends AppCompatActivity {
 
         // the main weather info fetching
 
-    private class FetchMainWeatherTask extends AsyncTask<String, Void, WeatherData> implements com.example.niyigaba_roseline_s2110962.FetchMainWeatherTask {
+//    private class FetchMainWeatherTask extends AsyncTask<String, Void, WeatherData> implements com.example.niyigaba_roseline_s2110962.FetchMainWeatherTask {
+//
+//        private String city;
+//
+//        public FetchMainWeatherTask(String city) {
+//            this.city = city;
+//        }
+//
+//        @Override
+//        protected void onPreExecute() {
+//            super.onPreExecute();
+//            // Show progress bar or perform any pre-execution tasks
+//        }
+//
+//        @Override
+//        protected WeatherData doInBackground(String... urls) {
+//            try {
+//                String rssFeedData = fetchRSSFeed(urls[0]);
+//                return parseMainWeatherInfo(rssFeedData);
+//            } catch (Exception e) {
+//                Log.e("FetchMainWeatherTask", "Error in doInBackground: " + e.getMessage());
+//                return null;
+//            }
+//
+//        }
+//
+//        private String fetchRSSFeed(String urlString) {
+//            String rssFeedData = null;
+//            try {
+//                URL url = new URL(urlString);
+//                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+//                conn.setRequestMethod("GET");
+//                InputStream in = new BufferedInputStream(conn.getInputStream());
+//                rssFeedData = readStream(in);
+//            } catch (IOException e) {
+//                Log.e("FetchRSSFeedTask", "Error fetching RSS feed: " + e.getMessage());
+//            }
+//            return rssFeedData;
+//        }
+//
+//        private String readStream(InputStream is) {
+//            StringBuilder sb = new StringBuilder();
+//            try (BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
+//                String line;
+//                while ((line = reader.readLine()) != null) {
+//                    sb.append(line).append('\n');
+//                }
+//            } catch (IOException e) {
+//                Log.e("FetchRSSFeedTask", "Error reading stream: " + e.getMessage());
+//            }
+//            return sb.toString();
+//        }
+//
+//        private WeatherData parseMainWeatherInfo(String rssFeedData) {
+//            WeatherData weatherData = null;
+//
+//            try {
+//                XmlPullParser parser = Xml.newPullParser();
+//                parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+//                parser.setInput(new StringReader(rssFeedData));
+//
+//                // Variables to store weather information
+//                String city = null;
+//                String date = null;
+//                String condition = null;
+//                String icon = null;
+//
+//                // Loop through the XML data to find the main weather information
+//                int eventType = parser.getEventType();
+//                while (eventType != XmlPullParser.END_DOCUMENT) {
+//                    String tagName = parser.getName();
+//                    switch (eventType) {
+//                        case XmlPullParser.START_TAG:
+//                            // Check if the tag is <title> or <description>
+//                            if ("title".equals(tagName)) {
+//                                String title = parser.nextText();
+//                                // Extract city and date from the title
+//                                if (title != null && title.contains(",")) {
+//                                    String[] parts = title.split(",");
+//                                    if (parts.length >= 2) {
+//                                        city = parts[0].trim();
+//                                        date = parts[1].trim();
+//                                    }
+//                                }
+//                            } else if ("description".equals(tagName)) {
+//                                // Extract condition and icon from the description
+//                                String description = parser.nextText();
+//                                if (description != null) {
+//                                    // Logic to extract condition and icon based on description format
+//                                    // Example: "Temperature: 25°C, Condition: Sunny, Icon: sunny"
+//                                    String[] parts = description.split(", ");
+//                                    for (String part : parts) {
+//                                        if (part.startsWith("Condition:")) {
+//                                            condition = part.substring("Condition:".length()).trim();
+//                                        } else if (part.startsWith("Icon:")) {
+//                                            icon = part.substring("Icon:".length()).trim();
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                            break;
+//                    }
+//                    eventType = parser.next();
+//                }
+//
+//                // Set the extracted weather data to the WeatherData object
+//                weatherData.setCityName(city);
+//                weatherData.setDate(date);
+//                weatherData.setMainCondition(condition);
+//                weatherData.setMainIcon(icon);
+//
+//            } catch (XmlPullParserException | IOException e) {
+//                Log.e("ParseMainWeatherInfo", "Error parsing RSS feed: " + e.getMessage());
+//            }
+//            return weatherData;
+//        }
+//
 
-        private String city;
-
-        public FetchMainWeatherTask(String city) {
-            this.city = city;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            // Show progress bar or perform any pre-execution tasks
-        }
-
-        @Override
-        protected WeatherData doInBackground(String... urls) {
-            try {
-                String rssFeedData = fetchRSSFeed(urls[0]);
-                return parseMainWeatherInfo(rssFeedData);
-            } catch (Exception e) {
-                Log.e("FetchMainWeatherTask", "Error in doInBackground: " + e.getMessage());
-                return null;
-            }
-
-        }
-
-        private String fetchRSSFeed(String urlString) {
-            String rssFeedData = null;
-            try {
-                URL url = new URL(urlString);
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestMethod("GET");
-                InputStream in = new BufferedInputStream(conn.getInputStream());
-                rssFeedData = readStream(in);
-            } catch (IOException e) {
-                Log.e("FetchRSSFeedTask", "Error fetching RSS feed: " + e.getMessage());
-            }
-            return rssFeedData;
-        }
-
-        private String readStream(InputStream is) {
-            StringBuilder sb = new StringBuilder();
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    sb.append(line).append('\n');
-                }
-            } catch (IOException e) {
-                Log.e("FetchRSSFeedTask", "Error reading stream: " + e.getMessage());
-            }
-            return sb.toString();
-        }
-
-        private WeatherData parseMainWeatherInfo(String rssFeedData) {
-            WeatherData weatherData = null;
-
-            try {
-                XmlPullParser parser = Xml.newPullParser();
-                parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-                parser.setInput(new StringReader(rssFeedData));
-
-                // Variables to store weather information
-                String city = null;
-                String date = null;
-                String condition = null;
-                String icon = null;
-
-                // Loop through the XML data to find the main weather information
-                int eventType = parser.getEventType();
-                while (eventType != XmlPullParser.END_DOCUMENT) {
-                    String tagName = parser.getName();
-                    switch (eventType) {
-                        case XmlPullParser.START_TAG:
-                            // Check if the tag is <title> or <description>
-                            if ("title".equals(tagName)) {
-                                String title = parser.nextText();
-                                // Extract city and date from the title
-                                if (title != null && title.contains(",")) {
-                                    String[] parts = title.split(",");
-                                    if (parts.length >= 2) {
-                                        city = parts[0].trim();
-                                        date = parts[1].trim();
-                                    }
-                                }
-                            } else if ("description".equals(tagName)) {
-                                // Extract condition and icon from the description
-                                String description = parser.nextText();
-                                if (description != null) {
-                                    // Logic to extract condition and icon based on description format
-                                    // Example: "Temperature: 25°C, Condition: Sunny, Icon: sunny"
-                                    String[] parts = description.split(", ");
-                                    for (String part : parts) {
-                                        if (part.startsWith("Condition:")) {
-                                            condition = part.substring("Condition:".length()).trim();
-                                        } else if (part.startsWith("Icon:")) {
-                                            icon = part.substring("Icon:".length()).trim();
-                                        }
-                                    }
-                                }
-                            }
-                            break;
-                    }
-                    eventType = parser.next();
-                }
-
-                // Set the extracted weather data to the WeatherData object
-                weatherData.setCityName(city);
-                weatherData.setDate(date);
-                weatherData.setMainCondition(condition);
-                weatherData.setMainIcon(icon);
-
-            } catch (XmlPullParserException | IOException e) {
-                Log.e("ParseMainWeatherInfo", "Error parsing RSS feed: " + e.getMessage());
-            }
-            return weatherData;
-        }
-
-
-
-        @Override
-        public void onPostExecute(WeatherData weatherData) {
-
-            super.onPostExecute(weatherData);
-
-            // Update UI with main weather information
-            if (weatherData != null) {
-
-                // Create a local variable to store weather data
-                WeatherData localWeatherData = weatherData;
-                // Update UI elements with the main weather information
-                TextView cityTextView = findViewById(R.id.city_text);
-                TextView mainWeatherTextView = findViewById(R.id.main_weather_info);
-                // Set city name and main weather info
-                cityTextView.setText(weatherData.getCityName());
-                mainWeatherTextView.setText(weatherData.getMainCondition());
-            } else {
-                // Handle case where main weather information is null
-                // Show error message, retry, etc.
-            }
-        }
-    }
+//
+//        @Override
+//        public void onPostExecute(WeatherData weatherData) {
+//
+//            super.onPostExecute(weatherData);
+//
+//            // Update UI with main weather information
+//            if (weatherData != null) {
+//
+//                // Create a local variable to store weather data
+//                WeatherData localWeatherData = weatherData;
+//                // Update UI elements with the main weather information
+//                TextView cityTextView = findViewById(R.id.city_text);
+//                TextView mainWeatherTextView = findViewById(R.id.main_weather_info);
+//                // Set city name and main weather info
+//                cityTextView.setText(weatherData.getCityName());
+//                mainWeatherTextView.setText(weatherData.getMainCondition());
+//            } else {
+//                // Handle case where main weather information is null
+//                // Show error message, retry, etc.
+//            }
+//        }
+//    }
 // end of main weather info fetching
     private void updateWeatherUI(WeatherData weatherData) {
 

@@ -6,4 +6,5 @@
     <item name="max_temp_text" type="id" />
     <item name="min_temp_text" type="id" />
     <item name="date_text" type="id" />
+    <item name="settings_options" type="id" />
 </resources>

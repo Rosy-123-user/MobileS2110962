@@ -1,5 +1,6 @@
 package com.example.niyigaba_roseline_s2110962;
-
+//Names:Niyigaba_Roseline
+//StudentId:S2110962
 import android.util.Log;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -39,31 +40,31 @@ public class Model {
         return rssFeedUrl;
     }
 
-    // New method to get the RSS feed URL for main weather information
-    public String getMainWeatherRSSFeedUrl(String city) {
-        String mainWeatherUrl;
-        switch (city) {
-            case "London":
-                mainWeatherUrl = "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/2643743";
-                break;
-            case "Glasgow":
-                mainWeatherUrl = "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/2648579";
-                break;
-            case "Oman":
-                mainWeatherUrl = "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/287286";
-                break;
-            case "Mauritius":
-                mainWeatherUrl = "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/934154";
-                break;
-            case "Bangladesh":
-                mainWeatherUrl = "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/1185241";
-                break;
-            default:
-                mainWeatherUrl = "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/5128581";
-                break;
-        }
-        return mainWeatherUrl;
-    }
+//    // New method to get the RSS feed URL for main weather information
+//    public String getMainWeatherRSSFeedUrl(String city) {
+//        String mainWeatherUrl;
+//        switch (city) {
+//            case "London":
+//                mainWeatherUrl = "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/2643743";
+//                break;
+//            case "Glasgow":
+//                mainWeatherUrl = "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/2648579";
+//                break;
+//            case "Oman":
+//                mainWeatherUrl = "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/287286";
+//                break;
+//            case "Mauritius":
+//                mainWeatherUrl = "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/934154";
+//                break;
+//            case "Bangladesh":
+//                mainWeatherUrl = "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/1185241";
+//                break;
+//            default:
+//                mainWeatherUrl = "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/5128581";
+//                break;
+//        }
+//        return mainWeatherUrl;
+//    }
 
 
     String extractHumidity(String description) {

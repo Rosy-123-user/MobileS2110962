@@ -1,5 +1,6 @@
 package com.example.niyigaba_roseline_s2110962;
-
+//Names:Niyigaba_Roseline
+//StudentId:S2110962
 public class WeatherData {
     private String date;
     private String mainCondition;
@@ -188,79 +189,79 @@ public class WeatherData {
 
     private String mainWeatherInfo;
     // Getter and setter for mainWeatherInfo
-    public String getMainWeatherInfo() {
-        return mainWeatherInfo;
-    }
-
-    public void setMainWeatherInfo(String mainWeatherInfo) {
-        this.mainWeatherInfo = mainWeatherInfo;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public void setMainCondition(String mainCondition) {
-        this.mainCondition = mainCondition;
-    }
-
-    public int getMainCondition() {
-        int conditionInt = 0;
-        // Convert the main condition String to an int based on the provided icons
-        switch (mainCondition) {
-            case "Snow":
-                conditionInt = R.drawable.snow;
-                break;
-            case "Tornado":
-                conditionInt = R.drawable.tornado;
-                break;
-            case "Thunder":
-                conditionInt = R.drawable.thunder;
-                break;
-            case "Rain_Thunder":
-                conditionInt = R.drawable.rain_thunder;
-                break;
-            case "Rain":
-                conditionInt = R.drawable.rain;
-                break;
-            case "Overcast":
-                conditionInt = R.drawable.overcast;
-                break;
-            case "Night_Snow_Thunder":
-                conditionInt = R.drawable.night_snow_thunder;
-                break;
-            case "Night_Rain":
-                conditionInt = R.drawable.night_rain;
-                break;
-            case "Night_Clear":
-                conditionInt = R.drawable.night_clear;
-                break;
-            case "Night_Partial_Cloud":
-                conditionInt = R.drawable.night_partial_cloud;
-                break;
-            case "Mist":
-                conditionInt = R.drawable.mist;
-                break;
-            case "Sleet":
-                conditionInt = R.drawable.sleet;
-                break;
-            case "Night_Sleet":
-                conditionInt = R.drawable.night_sleet;
-                break;
-            case "sunny":
-            case "clear sky":
-                conditionInt = R.drawable.sunny;
-                break;
-            default:
-                // Handle unknown condition or set a default icon
-                conditionInt = R.drawable.default_icon; // Placeholder value, replace with your default icon
-                break;
-        }
-        return conditionInt;
-    }
+//    public String getMainWeatherInfo() {
+//        return mainWeatherInfo;
+//    }
+//
+//    public void setMainWeatherInfo(String mainWeatherInfo) {
+//        this.mainWeatherInfo = mainWeatherInfo;
+//    }
+//
+//    public String getDate() {
+//        return date;
+//    }
+//
+//    public void setDate(String date) {
+//        this.date = date;
+//    }
+//
+//    public void setMainCondition(String mainCondition) {
+//        this.mainCondition = mainCondition;
+//    }
+//
+//    public int getMainCondition() {
+//        int conditionInt = 0;
+//        // Convert the main condition String to an int based on the provided icons
+//        switch (mainCondition) {
+//            case "Snow":
+//                conditionInt = R.drawable.snow;
+//                break;
+//            case "Tornado":
+//                conditionInt = R.drawable.tornado;
+//                break;
+//            case "Thunder":
+//                conditionInt = R.drawable.thunder;
+//                break;
+//            case "Rain_Thunder":
+//                conditionInt = R.drawable.rain_thunder;
+//                break;
+//            case "Rain":
+//                conditionInt = R.drawable.rain;
+//                break;
+//            case "Overcast":
+//                conditionInt = R.drawable.overcast;
+//                break;
+//            case "Night_Snow_Thunder":
+//                conditionInt = R.drawable.night_snow_thunder;
+//                break;
+//            case "Night_Rain":
+//                conditionInt = R.drawable.night_rain;
+//                break;
+//            case "Night_Clear":
+//                conditionInt = R.drawable.night_clear;
+//                break;
+//            case "Night_Partial_Cloud":
+//                conditionInt = R.drawable.night_partial_cloud;
+//                break;
+//            case "Mist":
+//                conditionInt = R.drawable.mist;
+//                break;
+//            case "Sleet":
+//                conditionInt = R.drawable.sleet;
+//                break;
+//            case "Night_Sleet":
+//                conditionInt = R.drawable.night_sleet;
+//                break;
+//            case "sunny":
+//            case "clear sky":
+//                conditionInt = R.drawable.sunny;
+//                break;
+//            default:
+//                // Handle unknown condition or set a default icon
+//                conditionInt = R.drawable.default_icon; // Placeholder value, replace with your default icon
+//                break;
+//        }
+//        return conditionInt;
+//    }
 
 }
